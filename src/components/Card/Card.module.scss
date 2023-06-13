@@ -1,0 +1,75 @@
+.card {
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px 0 #00000026;
+  border: 1px solid #E7E8EA;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 210px;
+  max-width: 100%;
+  .cardBody {
+    display: flex;
+    flex-direction: column;
+    color: inherit;
+  }
+  .cardImage {
+    position: relative;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 135px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 15px 0;
+    user-select: none;
+    img {
+      max-width: 100%;
+    }
+  }
+  .cardPrice {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 5px 0;
+  }
+  .cardSale {
+    font-size: 13px;
+    color: #686868;
+    text-decoration: line-through;
+    margin: 0 0 8px 0;
+  }
+  .cardName {
+    font-size: 15px;
+    line-height: 18px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0 0 10px 0;
+  }
+  .cardBtn{
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 16px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+  }
+  .cardBtn {
+    background-color: #E5CFB0;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      background-color: #D3BA96;
+    }
+  }
+  @media (max-width: 480px) {
+    width: 100%;
+    .cardImage {
+      width: 90px;
+    }
+  }
+}

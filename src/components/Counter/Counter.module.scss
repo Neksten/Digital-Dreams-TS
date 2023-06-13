@@ -1,0 +1,40 @@
+.cardCounter {
+  border: 1px solid #E7E8EA;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
+  position: relative;
+  border-radius: 5px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  max-width: 180px;
+  .count {}
+  & > .decrement, .increment {
+    position: absolute;
+    display: flex;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 25px;
+    line-height: 30px;
+    padding: 0 5px;
+    user-select: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      color: #923636;
+    }
+  }
+  & > .decrement {
+    left: 25px;
+    &.hide {
+      opacity: 0.2;
+      cursor: text;
+    }
+  }
+  & > .increment {
+    right: 25px;
+  }
+}

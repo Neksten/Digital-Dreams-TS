@@ -1,0 +1,43 @@
+.header {
+  width: 100%;
+  padding: 20px 0;
+  font-family: 'Montserrat', sans-serif;
+  z-index: 10;
+  background-color: #2C2E30;
+  &.absolute {
+    position: absolute;
+    background: none;
+  }
+  .menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .list {
+    display: flex;
+    align-items: center;
+    column-gap: 35px;
+  }
+  .link {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    column-gap: 7px;
+  }
+  @media (max-width: 480px) {
+    .title {
+      font-size: 20px;
+    }
+    .list {
+      column-gap: 15px;
+    }
+    .link span {
+      display: none;
+    }
+  }
+}

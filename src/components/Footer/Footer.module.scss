@@ -1,0 +1,40 @@
+.footer {
+  padding: 45px 0;
+  color: #fff;
+  background-color: #2C2E30;
+  font-family: 'Montserrat', sans-serif;
+  .content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  h4 {
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  .info {
+    max-width: 300px;
+    h5 {
+      font-weight: 500;
+      font-size: 30px;
+      margin-bottom: 10px;
+      span {
+        color: #E46B86;
+      }
+    }
+    p {
+      line-height: 20px;
+      margin-bottom: 5px;
+    }
+  }
+  .item {
+    max-width: 210px;
+    ul {
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+.customCheckbox {
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #E7E8EA;
+  position: relative;
+  &.selected::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 13px;
+    height: 13px;
+    border-radius: 3px;
+    background-color: #E7E8EA;
+  }
+}
