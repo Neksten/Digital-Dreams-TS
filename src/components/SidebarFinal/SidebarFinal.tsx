@@ -1,6 +1,7 @@
 import React from 'react';
-import {Link} from "react-router-dom";
-import styles from './SidebarFinal.module.scss'
+import {Link} from 'react-router-dom';
+
+import styles from './SidebarFinal.module.scss';
 
 interface ISidebarFinalProps {
 	redirect: string;
@@ -19,14 +20,14 @@ const SidebarFinal: React.FC<ISidebarFinalProps> = ({
 		totalSale,
 		totalPrice,
 		send,
-		onSendForm
+		onSendForm,
 	}) => {
 	
 	const handleSendForm = (e: any) => {
 		if (send && onSendForm) {
-			onSendForm(e)
+			onSendForm(e);
 		}
-	}
+	};
 	
 	return (
 		<div className={styles.heroSidebar}>

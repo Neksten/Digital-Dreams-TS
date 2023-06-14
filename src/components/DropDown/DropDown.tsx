@@ -1,31 +1,36 @@
 import React, {useState} from 'react';
-import styles from './DropDown.module.scss'
-import {ArrowDown} from "../../assets/ArrowDown";
-import OutsideClickHandler from "../OutsideClickHandler";
+
 import classNames from 'classnames/bind';
 
-let cx = classNames.bind(styles);
+import {ArrowDown} from '../../assets/ArrowDown';
+
+import OutsideClickHandler from '../OutsideClickHandler';
+
+import styles from './DropDown.module.scss';
+
+
+const cx = classNames.bind(styles);
 
 interface DropDownProps {
-	list: any[];
+	list: string[];
 	setSelectionOption: (value: string) => void;
 	selectionOption: string;
 	form?: number;
 }
 
 const DropDown: React.FC<DropDownProps> = (props) => {
-	const [isOpen, setIsOpen] = useState(false)
+	const [isOpen, setIsOpen] = useState(false);
 	
-	const options = props.list
+	const options = props.list;
 	
 	// Открытие/закрытие dropdown
 	function toggleDropdown() {
-		setIsOpen(!isOpen)
+		setIsOpen(!isOpen);
 	}
 	// При клике на элемент dropdown
 	function handleOptionClick(option: string) {
-		props.setSelectionOption(option)
-		setIsOpen(false)
+		props.setSelectionOption(option);
+		setIsOpen(false);
 	}
 	
 	return (
@@ -33,7 +38,9 @@ const DropDown: React.FC<DropDownProps> = (props) => {
 			form: props.form,
 		})}>
 			<OutsideClickHandler onOutsideClick={setIsOpen}>
-				<div onClick={toggleDropdown} className={styles.top}>{props.selectionOption} <span><ArrowDown/></span></div>
+				<div onClick={toggleDropdown} className={styles.top}>{props.selectionOption}
+					<span><ArrowDown/></span>
+				</div>
 				{isOpen &&
 					<div className={styles.body}>
 						<ul>

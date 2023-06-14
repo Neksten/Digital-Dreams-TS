@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export const CartEmpty: React.FC  = () => (
 	<svg width="172" height="170" viewBox="0 0 172 170" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -12,4 +12,4 @@ export const CartEmpty: React.FC  = () => (
 		</defs>
 	</svg>
 
-)
+);

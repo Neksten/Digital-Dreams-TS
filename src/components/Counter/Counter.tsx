@@ -1,8 +1,10 @@
 import React from 'react';
-import styles from "./Counter.module.scss";
+
 import classNames from 'classnames/bind';
 
-let cx = classNames.bind(styles);
+import styles from './Counter.module.scss';
+
+const cx = classNames.bind(styles);
 
 interface ICounterProps {
 	handleCountDecrementClick: () => void;

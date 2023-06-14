@@ -1,26 +1,35 @@
 import React, {useEffect, useState} from 'react';
-import CustomCheckBox from "../CustomCheckBox/CustomCheckBox";
+
+import CustomCheckBox from '../CustomCheckBox/CustomCheckBox';
+import {IFiltersState} from '../../types/filters';
 
 interface IFilterDropDownItemProps {
 	option: string;
 	addOptionFilter: (option: string, title: string) => void;
-	selectedOptions: any;
-	removeOptionFilter: any;
-	title: any;
+	selectedOptions: IFiltersState;
+	removeOptionFilter: (option: string, title: string) => void;
+	title: string;
 }
 
-const FilterDropDownItem: React.FC <IFilterDropDownItemProps> = ({option, addOptionFilter, removeOptionFilter, selectedOptions, title}) => {
-	const [selected, setSelected] = useState(false)
+const FilterDropDownItem: React.FC <IFilterDropDownItemProps> = (
+	{
+		option,
+		addOptionFilter,
+		removeOptionFilter,
+		selectedOptions,
+		title,
+	}) => {
+	const [selected, setSelected] = useState(false);
 	
 	// активный/неактивный
 	function handleOptionClick() {
-		setSelected(!selected)
+		setSelected(!selected);
 		
 		if (selected) {
-			removeOptionFilter(option.toLowerCase(), title.toLowerCase())
+			removeOptionFilter(option.toLowerCase(), title.toLowerCase());
 			
 		} else {
-			addOptionFilter(option.toLowerCase(), title.toLowerCase())
+			addOptionFilter(option.toLowerCase(), title.toLowerCase());
 		}
 	}
 	
@@ -28,9 +37,10 @@ const FilterDropDownItem: React.FC <IFilterDropDownItemProps> = ({option, addOpt
 		if (selectedOptions.brand.includes(option.toLowerCase())
 			|| selectedOptions.color.includes(option.toLowerCase())
 		) {
-			setSelected(true)
+			setSelected(true);
 		}
-	}, [])
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 	
 	return (
 		<li onClick={handleOptionClick}>

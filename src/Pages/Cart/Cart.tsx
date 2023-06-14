@@ -1,26 +1,29 @@
 import React, {useEffect} from 'react';
-import styles from './Cart.module.scss'
-import {useTypedSelector} from "../../hooks/useTypedSelector";
-import {useActions} from "../../hooks/useActions";
-import {CartEmpty} from "../../assets/CartEmpty";
-import CartProduct from "../../components/CartProduct/CartProduct";
-import {IProduct} from "../../types/product";
-import SidebarFinal from "../../components/SidebarFinal/SidebarFinal";
+
+import {useTypedSelector} from '../../hooks/useTypedSelector';
+import {useActions} from '../../hooks/useActions';
+import {CartEmpty} from '../../assets/CartEmpty';
+import CartProduct from '../../components/CartProduct/CartProduct';
+import {IProduct} from '../../types/product';
+import SidebarFinal from '../../components/SidebarFinal/SidebarFinal';
+
+import styles from './Cart.module.scss';
 
 const Cart: React.FC = () => {
-	const {cart, finalPrice, finalSale} = useTypedSelector(state => state.cart)
-	const {products} = useTypedSelector(state => state.product)
-	const {axiosGetCart, axiosGetProducts} = useActions()
+	const {cart, finalPrice, finalSale} = useTypedSelector(state => state.cart);
+	const {products} = useTypedSelector(state => state.product);
+	const {axiosGetCart, axiosGetProducts} = useActions();
 	
-	const cartLength = cart.length
+	const cartLength = cart.length;
 	
 	const searchProduct = (idProduct: number): IProduct | undefined =>
 		products.find((i) => i.id === idProduct);
 	
 	useEffect(() => {
-		axiosGetCart()
-		axiosGetProducts()
-	}, [])
+		axiosGetCart();
+		axiosGetProducts();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 	
 	return (
 		<main className={`${styles.cart} page`}>

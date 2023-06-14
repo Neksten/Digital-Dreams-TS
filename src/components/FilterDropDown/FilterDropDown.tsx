@@ -1,24 +1,29 @@
 import React, {useState} from 'react';
-import OutsideClickHandler from "../OutsideClickHandler";
-import styles from './FilterDropDown.module.scss'
-import {ArrowDown} from "../../assets/ArrowDown";
-import FilterDropDownItem from "./FilterDropDownItem";
+
+import OutsideClickHandler from '../OutsideClickHandler';
+
+import {ArrowDown} from '../../assets/ArrowDown';
+
+import {IFiltersState} from '../../types/filters';
+
+import styles from './FilterDropDown.module.scss';
+import FilterDropDownItem from './FilterDropDownItem';
 
 interface IFilterDropDownProps {
 	addOptionFilter: (option: string, title: string) => void;
-	selectedOptions: any;
-	removeOptionFilter: any;
-	title: any;
-	list: any[];
+	selectedOptions: IFiltersState;
+	removeOptionFilter: (option: string, title: string) => void;
+	title: string;
+	list: string[];
 }
 
 const FilterDropDown: React.FC<IFilterDropDownProps> = (props) => {
-	const [isOpen, setIsOpen] = useState(false)
-	const options = props.list
+	const [isOpen, setIsOpen] = useState(false);
+	const options = props.list;
 	
 	// открытие/закрытие
 	function toggleDropdown() {
-		setIsOpen(!isOpen)
+		setIsOpen(!isOpen);
 	}
 	
 	return (

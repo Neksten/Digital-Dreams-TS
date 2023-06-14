@@ -4,6 +4,11 @@ export interface IFiltersState {
 	sortBy: string | null;
 }
 
+export interface FilterOption {
+	title: string;
+	options: string[];
+}
+
 export enum FiltersActionTypes {
 	BY_NAME = 'BY_NAME',
 	DESCENDING_PRICES = 'DESCENDING_PRICES',

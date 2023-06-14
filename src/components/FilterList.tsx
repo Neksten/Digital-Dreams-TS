@@ -1,42 +1,49 @@
 import React from 'react';
-import FilterDropDown from "./FilterDropDown/FilterDropDown";
-import {useTypedSelector} from "../hooks/useTypedSelector";
+
+import {useDispatch} from 'react-redux';
+
+import {useTypedSelector} from '../hooks/useTypedSelector';
+
 import {
 	addBrandFilterReducerAction,
 	addColorFilterReducerAction, filterProductsReducerAction, removeBrandFilterReducerAction,
-	removeColorFilterReducerAction
-} from "../store/reducers/productsReducer";
-import {useDispatch} from "react-redux";
+	removeColorFilterReducerAction,
+} from '../store/reducers/productsReducer';
+
+import {FilterOption} from '../types/filters';
+
+import FilterDropDown from './FilterDropDown/FilterDropDown';
+
 
 interface IFilterListProps {
-	filters: any[]
+	filters: FilterOption[]
 }
 
 const FilterList: React.FC<IFilterListProps> = ({filters}) => {
-	const dispatch = useDispatch()
-	const filtersActive = useTypedSelector(state => state.product.filters)
+	const dispatch = useDispatch();
+	const filtersActive = useTypedSelector(state => state.product.filters);
 	
 	// Добавить фильтр в активный
 	function addOptionFilter(option: string, title: string) {
 		switch (title) {
 			case 'цвет':
-				dispatch(addColorFilterReducerAction(option))
-				break
+				dispatch(addColorFilterReducerAction(option));
+				break;
 			case 'бренд':
-				dispatch(addBrandFilterReducerAction(option))
+				dispatch(addBrandFilterReducerAction(option));
 		}
-		dispatch(filterProductsReducerAction())
+		dispatch(filterProductsReducerAction());
 	}
 	// Убрать фильтр из активных
 	function removeOptionFilter(option: string, title: string) {
 		switch (title) {
 			case 'цвет':
-				dispatch(removeColorFilterReducerAction(option))
-				break
+				dispatch(removeColorFilterReducerAction(option));
+				break;
 			case 'бренд':
-				dispatch(removeBrandFilterReducerAction(option))
+				dispatch(removeBrandFilterReducerAction(option));
 		}
-		dispatch(filterProductsReducerAction())
+		dispatch(filterProductsReducerAction());
 	}
 	
 	return (

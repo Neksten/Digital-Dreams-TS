@@ -1,12 +1,16 @@
 import React from 'react';
-import styles from './Header.module.scss'
-import {CartIcon} from "../../assets/CartIcon";
-import {Favorite} from "../../assets/Favorite";
-import {User} from "../../assets/User";
-import {NavLink, useLocation} from "react-router-dom";
+
+import {NavLink, useLocation} from 'react-router-dom';
+
 import classNames from 'classnames/bind';
 
-let cx = classNames.bind(styles);
+import {CartIcon} from '../../assets/CartIcon';
+import {Favorite} from '../../assets/Favorite';
+import {User} from '../../assets/User';
+
+import styles from './Header.module.scss';
+
+const cx = classNames.bind(styles);
 
 const Header = () => {
 	// отследить путь url строки
