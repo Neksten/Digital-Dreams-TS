@@ -1,0 +1,16 @@
+.userForm {
+  margin: 0 0 30px 0;
+}
+.userFormRow {
+  display: grid;
+  grid-template-columns: repeat(2, 47.5%);
+  gap: 20px;
+  &:not(:last-child) {
+    margin: 0 0 15px 0;
+  }
+}
+@media (max-width: 480px) {
+  .userFormRow {
+    grid-template-columns: 1fr;
+  }
+}

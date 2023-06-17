@@ -1,0 +1,43 @@
+.order {
+  .heroOrder {
+    padding: 50px 0;
+    height: 100%;
+    .heroForms {
+
+    }
+    .title {
+      font-weight: 700;
+      font-size: 30px;
+      margin: 0 0 30px 0;
+    }
+    .userFormTitle {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0 0 15px 0;
+    }
+    .heroContent {
+      display: grid;
+      column-gap: 50px;
+      grid-template-columns: 670px 1fr;
+    }
+    .creditCardForm {
+      margin: 0 0 30px 0;
+    }
+    @media (max-width: 992px) {
+      .heroContent {
+        grid-template-columns: 1fr;
+        row-gap: 30px;
+      }
+    }
+    @media (max-width: 480px) {
+      padding: 30px 0;
+      .title {
+        font-size: 25px;
+        margin: 0 0 20px 0;
+      }
+      .userFormTitle {
+        font-size: 18px;
+      }
+    }
+  }
+}

@@ -25,6 +25,7 @@ export enum CartActionTypes {
 	CALCULATE_AMOUNT_CART = 'CALCULATE_AMOUNT_CART',
 	ADD_CART = 'ADD_CART',
 	REMOVE_CART = 'REMOVE_CART',
+	ALL_REMOVE_CART = 'ALL_REMOVE_CART',
 	UPDATE_COUNT_INCREMENT_CART = 'UPDATE_COUNT_INCREMENT_CART',
 	UPDATE_COUNT_DECREMENT_CART = 'UPDATE_COUNT_DECREMENT_CART',
 }
@@ -65,6 +66,10 @@ export interface RemoveCartAction {
 	type: CartActionTypes.REMOVE_CART;
 	payload: number;
 }
+// удалить всё из корзины
+export interface AllRemoveCartAction {
+	type: CartActionTypes.ALL_REMOVE_CART;
+}
 // увеличить количество
 export interface UpdatedCountIncrementCartAction {
 	type: CartActionTypes.UPDATE_COUNT_INCREMENT_CART;
@@ -84,3 +89,4 @@ export type CartAction =
 	| UpdatedCountIncrementCartAction
 	| UpdatedCountDecrementCartAction
 	| CalculateAmountAction
+	| AllRemoveCartAction

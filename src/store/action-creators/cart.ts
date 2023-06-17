@@ -3,7 +3,7 @@ import {Dispatch} from 'redux';
 import {CartAction, ICartData, ICartProduct} from '../../types/cart';
 import {IProduct} from '../../types/product';
 import {
-	addCartReducerAction, axiosCartErrorReducerAction,
+	addCartReducerAction, allRemoveCartReducerAction, axiosCartErrorReducerAction,
 	axiosCartReducerAction,
 	axiosCartSuccessReducerAction, calculateAmountReducerAction,
 	removeCartReducerAction, updateCountCartDecrementReducerAction, updateCountCartIncrementReducerAction,
@@ -89,6 +89,21 @@ export const removeCart = (id: number) => {
 				dispatch(calculateAmountReducerAction({finalPrice: price, finalSale: sale}));
 				dispatch(removeCartReducerAction(id));
 			}
+		} catch (e) {
+			dispatch(axiosCartErrorReducerAction('Ошибка при удаление товара'));
+		}
+	};
+};
+// delete запрос удаление корзины на будущем бэке
+export const allRemoveCart = () => {
+	return async (dispatch: Dispatch<CartAction>) => {
+		try {
+			// загрузка
+			dispatch(axiosCartReducerAction());
+			
+			await localStorage.setItem('cart', JSON.stringify({products:[], finalPrice:0, finalSale:0}));
+			
+			dispatch(allRemoveCartReducerAction());
 		} catch (e) {
 			dispatch(axiosCartErrorReducerAction('Ошибка при удаление товара'));
 		}

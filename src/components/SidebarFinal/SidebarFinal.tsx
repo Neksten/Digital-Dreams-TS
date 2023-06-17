@@ -4,17 +4,17 @@ import {Link} from 'react-router-dom';
 import styles from './SidebarFinal.module.scss';
 
 interface ISidebarFinalProps {
-	redirect: string;
+	redirect?: string | undefined;
 	textBtn: string;
 	length: number;
 	totalSale: number;
 	totalPrice: number;
 	send?: boolean;
-	onSendForm?: (e: any) => void;
+	onSendForm?: (e: React.FormEvent<HTMLSpanElement>) => void;
 }
 
 const SidebarFinal: React.FC<ISidebarFinalProps> = ({
-		redirect = '/',
+		redirect,
 		textBtn,
 		length,
 		totalSale,
@@ -23,15 +23,11 @@ const SidebarFinal: React.FC<ISidebarFinalProps> = ({
 		onSendForm,
 	}) => {
 	
-	const handleSendForm = (e: any) => {
-		if (send && onSendForm) {
-			onSendForm(e);
-		}
-	};
-	
 	return (
 		<div className={styles.heroSidebar}>
-			<Link to={redirect}><span onClick={handleSendForm} className={styles.arrange}>{textBtn}</span></Link>
+			<Link to={redirect ? redirect : ''}>
+				<span onClick={(e) => send && onSendForm && onSendForm(e) } className={styles.arrange}>{textBtn}</span>
+			</Link>
 			<div className={styles.info}>
 				<span className={styles.total}>Всего: {length} товара</span>
 				<div className={styles.sale}>

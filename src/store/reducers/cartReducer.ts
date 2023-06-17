@@ -1,5 +1,5 @@
 import {
-	AddCartAction,
+	AddCartAction, AllRemoveCartAction,
 	AxiosCartAction,
 	AxiosCartErrorAction,
 	AxiosCartSuccessAction, CalculateAmountAction,
@@ -46,6 +46,11 @@ export const cartReducer = (state: ICartState = initialState, action: CartAction
 			return {...state,
 				loading: false,
 				cart: state.cart.filter(item => item.idProduct !== action.payload),
+			};
+		case CartActionTypes.ALL_REMOVE_CART:
+			return {...state,
+				loading: false,
+				cart: [],
 			};
 		case CartActionTypes.UPDATE_COUNT_INCREMENT_CART:
 			return {
@@ -94,6 +99,9 @@ export const addCartReducerAction = (payload: ICartProduct): AddCartAction => ({
 });
 export const removeCartReducerAction = (payload: number): RemoveCartAction => ({
 	type: CartActionTypes.REMOVE_CART, payload,
+});
+export const allRemoveCartReducerAction = (): AllRemoveCartAction => ({
+	type: CartActionTypes.ALL_REMOVE_CART,
 });
 export const updateCountCartIncrementReducerAction = (payload: number): UpdatedCountIncrementCartAction => ({
 	type: CartActionTypes.UPDATE_COUNT_INCREMENT_CART, payload,

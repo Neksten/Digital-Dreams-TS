@@ -1,5 +1,6 @@
 import {IProduct} from './types/product';
 import {FilterOption} from './types/filters';
+import {Address} from './types/Adress';
 
 export const products: IProduct[] = [
 	{
@@ -79,5 +80,20 @@ export const filtersList: FilterOption[] = [
 			'Beyerdynamic',
 			'Logitech',
 		],
+	},
+];
+
+export const addresses: Address[] = [
+	{
+		geometry: [54.319742, 48.395900],
+		address: 'ЦУМ, улица Гончарова, 21, Ульяновск',
+	},
+	{
+		geometry: [54.318297, 48.396636],
+		address: 'ЯндексМаркет, улица Гончарова, 28/13, Ульяновск',
+	},
+	{
+		geometry: [54.316338, 48.396079],
+		address: 'Mediasoft, улица Карла Маркса, 13Ак3',
 	},
 ];
