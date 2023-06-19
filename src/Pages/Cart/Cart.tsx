@@ -12,7 +12,8 @@ import styles from './Cart.module.scss';
 const Cart: React.FC = () => {
 	const {cart, finalPrice, finalSale} = useTypedSelector(state => state.cart);
 	const {products} = useTypedSelector(state => state.product);
-	const {axiosGetCart, axiosGetProducts} = useActions();
+	
+	const {axiosGetFavorite, axiosGetCart, axiosGetProducts} = useActions();
 	
 	const cartLength = cart.length;
 	
@@ -20,6 +21,7 @@ const Cart: React.FC = () => {
 		products.find((i) => i.id === idProduct);
 	
 	useEffect(() => {
+		axiosGetFavorite();
 		axiosGetCart();
 		axiosGetProducts();
 		// eslint-disable-next-line react-hooks/exhaustive-deps

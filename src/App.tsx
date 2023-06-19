@@ -6,6 +6,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Cart from './Pages/Cart/Cart';
 import Order from './Pages/Order/Order';
+import Favorite from './Pages/Favorite/Favorite';
 
 const App:React.FC = () => {
 	return (
@@ -16,6 +17,7 @@ const App:React.FC = () => {
 					<Route path="/" element={<Home/>}/>
 					<Route path="/cart" element={<Cart/>}/>
 					<Route path="/order" element={<Order/>}/>
+					<Route path="/favorite" element={<Favorite/>}/>
 				</Routes>
 				<Footer/>
 			</Router>

@@ -20,7 +20,7 @@ import styles from './Home.module.scss';
 const Home: React.FC = () => {
 	const dispatch = useDispatch();
 	const {filteredProducts, loading} = useTypedSelector(state => state.product);
-	const {axiosGetProducts, axiosGetCart} = useActions();
+	const {axiosGetFavorite, axiosGetProducts, axiosGetCart} = useActions();
 	const scrollToRef = useRef<HTMLElement>({} as HTMLElement);
 	
 	// сортировка
@@ -33,6 +33,7 @@ const Home: React.FC = () => {
 	
 	// закрузка данных
 	useEffect(() => {
+		axiosGetFavorite();
 		axiosGetProducts();
 		axiosGetCart();
 		// eslint-disable-next-line react-hooks/exhaustive-deps

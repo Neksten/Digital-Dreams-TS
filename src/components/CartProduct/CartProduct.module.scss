@@ -40,15 +40,23 @@
       display: inline-block;
       margin: 0 0 8px 0;
     }
+    .management {
+      display: flex;
+      align-items: center;
+      column-gap: 10px;
+    }
+    .favorite {
+      cursor: pointer;
+      font-size: 12px;
+    }
     .remove {
-      opacity: 0.5;
       font-size: 12px;
       cursor: pointer;
       display: flex;
       align-items: center;
       svg {
-        width: 17px;
-        height: 17px;
+        width: 15px;
+        height: 15px;
       }
       span {
         margin: 0 0 0 5px;

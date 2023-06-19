@@ -12,6 +12,9 @@ import {products} from './local-data';
 if (!localStorage.getItem('cart')) {
 	localStorage.setItem('cart', JSON.stringify({products: [], finalPrice: 0, finalSale: 0}));
 }
+if (!localStorage.getItem('favorite')) {
+	localStorage.setItem('favorite', JSON.stringify([]));
+}
 if (!localStorage.getItem('products')) {
 	localStorage.setItem('products', JSON.stringify(products));
 }

@@ -29,10 +29,7 @@ const Header = () => {
 								<NavLink to="/cart" className={styles.link}><CartIcon/></NavLink>
 							</li>
 							<li>
-								<div className={styles.link}><Favorite/></div>
-							</li>
-							<li>
-								<div className={styles.link}><User/></div>
+								<NavLink to="/favorite" className={styles.link}><Favorite/></NavLink>
 							</li>
 						</ul>
 					</nav>

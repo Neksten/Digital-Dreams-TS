@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import CreditCard from '../CreditCard/CreditCard';
 import CustomInputForm from '../CustomInputForm/CustomInputForm';
 
-import {IOrder} from '../../types/Order';
+import {IOrder} from '../../types/order';
 
 import styles from './CreditCardForm.module.scss';
 
@@ -72,7 +72,8 @@ const CreditCardForm: React.FC<ICreditCardFormProps> = ({formData, setFormData})
 					                 name="CVV"
 					                 htmlFor="cardCvv"
 					                 placeholder="cvv"
-					                 setFlipped={setFlipped}/>
+					                 handleClick={() => setFlipped(true)}
+					                 handleBlur={() => setFlipped(false)}/>
 				</div>
 			</form>
 		</div>

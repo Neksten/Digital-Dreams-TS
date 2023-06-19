@@ -8,6 +8,7 @@
   justify-content: space-between;
   width: 210px;
   max-width: 100%;
+  position: relative;
   .cardBody {
     display: flex;
     flex-direction: column;
@@ -65,6 +66,12 @@
     &:hover {
       background-color: #D3BA96;
     }
+  }
+  .cardFavorite {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
   }
   @media (max-width: 480px) {
     width: 100%;

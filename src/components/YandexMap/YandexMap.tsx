@@ -5,7 +5,7 @@ import OutsideClickHandler from '../OutsideClickHandler';
 
 import CustomInputForm from '../CustomInputForm/CustomInputForm';
 import PointMap from '../PointMap';
-import {Address} from '../../types/Adress';
+import {Address} from '../../types/adress';
 
 import styles from './YandexMap.module.scss';
 

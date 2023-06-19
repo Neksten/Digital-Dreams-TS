@@ -7,7 +7,7 @@ import YandexMap from '../../components/YandexMap/YandexMap';
 
 import CreditCardForm from '../../components/CreditCardForm/CreditCardForm';
 import UserForm from '../../components/UserForm/UserForm';
-import {IOrder} from '../../types/Order';
+import {IOrder} from '../../types/order';
 import {addresses} from '../../local-data';
 import {useActions} from '../../hooks/useActions';
 import {useTypedSelector} from '../../hooks/useTypedSelector';

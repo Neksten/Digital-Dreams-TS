@@ -9,7 +9,7 @@ interface ICustomInputFormProps {
 	value: string,
 	setValue: (value: string) => void;
 	handleClick?: () => void;
-	setFlipped?: (value: boolean) => void;
+	handleBlur?: () => void;
 }
 
 const CustomInputForm: React.FC<ICustomInputFormProps> = ({
@@ -19,7 +19,7 @@ const CustomInputForm: React.FC<ICustomInputFormProps> = ({
 		value,
 		setValue,
 	  handleClick,
-		setFlipped,
+	  handleBlur,
 	}) => {
 	const [textError, setTextError] = useState('');
 	const inputRef = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -61,7 +61,6 @@ const CustomInputForm: React.FC<ICustomInputFormProps> = ({
 				setTextError('');
 				break;
 			case 'cardCvv':
-				setFlipped && setFlipped(true);
 				setTextError('');
 				break;
 			default:
@@ -99,7 +98,6 @@ const CustomInputForm: React.FC<ICustomInputFormProps> = ({
 				if (value.length < 3) {
 					errorStatus(errorMessages[htmlFor]);
 				}
-				setFlipped && setFlipped(false);
 				break;
 			case 'cardNumber':
 				if (value.length < 16) {
@@ -118,6 +116,7 @@ const CustomInputForm: React.FC<ICustomInputFormProps> = ({
 			default:
 				break;
 		}
+		handleBlur && handleBlur();
 	}
 	
 	

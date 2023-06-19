@@ -1,10 +1,13 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {IProduct} from '../../types/product';
 import Counter from '../Counter/Counter';
 import {useActions} from '../../hooks/useActions';
 import {useTypedSelector} from '../../hooks/useTypedSelector';
 import {ICartProduct} from '../../types/cart';
+import {Heart} from '../../assets/Heart';
+
+import {HeartFill} from '../../assets/HeartFill';
 
 import styles from './Card.module.scss';
 
@@ -13,8 +16,19 @@ interface ICardProps {
 }
 
 const Card: React.FC<ICardProps> = ({product}) => {
+	const [favorite, setFavorite] = useState(false);
 	const {cart} = useTypedSelector(state => state.cart);
-	const {addCart, removeCart, productCountDecrementClick, productCountIncrementClick} = useActions();
+	const {favorites} = useTypedSelector(state => state.favorite);
+	
+	const {
+		addCart,
+		removeCart,
+		productCountDecrementClick,
+		productCountIncrementClick,
+		addFavorite,
+		removeFavorite,
+	} = useActions();
+	
 	// Получаем элемент из корзины если он есть
 	const productCart: ICartProduct | undefined = [...cart].find((i) => i.idProduct === product.id);
 	
@@ -30,7 +44,16 @@ const Card: React.FC<ICardProps> = ({product}) => {
 	function removeCartProduct(product: IProduct) {
 		removeCart(product.id);
 	}
+	function handleFavoriteClick(product: IProduct) {
+		!favorite ? addFavorite(product) : removeFavorite(product.id);
+		setFavorite(!favorite);
+	}
 	
+	useEffect(() => {
+		setFavorite(favorites.some(i => i.idProduct === product.id));
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
 	useEffect(() => {
 		// Удалить из корзины если счётчик 0
 		if (productCart && !productCart.quantity) {
@@ -42,6 +65,12 @@ const Card: React.FC<ICardProps> = ({product}) => {
 	return (
 		<div className={styles.card}>
 			<div className={styles.cardBody}>
+				<div className={styles.cardFavorite} onClick={() => handleFavoriteClick(product)}>
+					{favorite
+						? <HeartFill/>
+						: <Heart/>
+					}
+				</div>
 				<div className={styles.cardImage}>
 					<img src={product.imgUrl} alt="product"/>
 				</div>

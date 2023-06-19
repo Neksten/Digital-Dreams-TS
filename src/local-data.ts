@@ -1,6 +1,6 @@
 import {IProduct} from './types/product';
 import {FilterOption} from './types/filters';
-import {Address} from './types/Adress';
+import {Address} from './types/adress';
 
 export const products: IProduct[] = [
 	{

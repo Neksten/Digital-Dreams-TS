@@ -1,7 +1,7 @@
 import React from 'react';
 
 import CustomInputForm from '../CustomInputForm/CustomInputForm';
-import {IOrder} from '../../types/Order';
+import {IOrder} from '../../types/order';
 
 import styles from './UserForm.module.scss';
 

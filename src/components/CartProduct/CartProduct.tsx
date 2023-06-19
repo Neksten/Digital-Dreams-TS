@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import classNames from 'classnames/bind';
 
@@ -6,6 +6,8 @@ import {Cross} from '../../assets/Cross';
 import {IProduct} from '../../types/product';
 import Counter from '../Counter/Counter';
 import {useActions} from '../../hooks/useActions';
+
+import {useTypedSelector} from '../../hooks/useTypedSelector';
 
 import styles from './CartProduct.module.scss';
 const cx = classNames.bind(styles);
@@ -16,7 +18,15 @@ interface ICartProductProps {
 }
 
 const CartProduct: React.FC<ICartProductProps> = ({product, quantity}) => {
-	const {removeCart, productCountDecrementClick, productCountIncrementClick} = useActions();
+	const [favorite, setFavorite] = useState(false);
+	const {favorites} = useTypedSelector(state => state.favorite);
+	const {
+		removeCart,
+		productCountDecrementClick,
+		productCountIncrementClick,
+		addFavorite,
+		removeFavorite,
+	} = useActions();
 	if (!product) {
 		return null; // Обработка случая, когда продукт не определён
 	}
@@ -32,6 +42,15 @@ const CartProduct: React.FC<ICartProductProps> = ({product, quantity}) => {
 			productCountDecrementClick(product.id);
 		}
 	};
+	function handleFavoriteClick(product: IProduct) {
+		!favorite ? addFavorite(product) : removeFavorite(product.id);
+		setFavorite(!favorite);
+	}
+	
+	useEffect(() => {
+		setFavorite(favorites.some(i => i.idProduct === product.id));
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 	
 	return (
 		<div className={styles.cartProduct}>
@@ -43,8 +62,19 @@ const CartProduct: React.FC<ICartProductProps> = ({product, quantity}) => {
 					<p className={styles.name}>{product.title}</p>
 					<div>
 						<span className={styles.brand}>{product.brand}</span>
-						<div onClick={() => removeCartProduct()} className={styles.remove}><Cross/>
-							<span>Удалить</span>
+						<div className={styles.management}>
+							<div onClick={() => product && handleFavoriteClick(product)} className={styles.favorite}>
+								{
+									favorite
+										? <span style={{color: '#F93E3E'}}>В избранном</span>
+										: <span>В избранное</span>
+								}
+							</div>
+							|
+							<div onClick={() => removeCartProduct()} className={styles.remove}>
+								<Cross/>
+								<span>Удалить</span>
+							</div>
 						</div>
 					</div>
 				</div>
