@@ -18,7 +18,9 @@ export const axiosGetCart = () => {
 			const cart = await localStorage.getItem('cart');
 			const {products, finalSale, finalPrice}: ICartData = cart ? JSON.parse(cart) : null;
 			
-			dispatch(axiosCartSuccessReducerAction({products, finalPrice, finalSale}));
+			setTimeout( () => {
+				dispatch(axiosCartSuccessReducerAction({products, finalPrice, finalSale}));
+			}, 600);
 		} catch (e) {
 			dispatch(axiosCartErrorReducerAction('Ошибка при загрузке товаров'));
 		}

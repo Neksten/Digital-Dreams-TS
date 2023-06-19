@@ -18,7 +18,9 @@ export const axiosGetFavorite = () => {
 			const response = await localStorage.getItem('favorite');
 			const favorite: IFavoriteProduct[] = response ? JSON.parse(response) : null;
 			
-			dispatch(axiosFavoriteSuccessReducerAction(favorite));
+			setTimeout( () => {
+				dispatch(axiosFavoriteSuccessReducerAction(favorite));
+			}, 500);
 		}	catch (e) {
 			dispatch(axiosFavoriteErrorReducerAction('Ошибка при загрузке избранных'));
 		}

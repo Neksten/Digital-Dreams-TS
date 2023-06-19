@@ -14,7 +14,9 @@ export const axiosGetProducts = () => {
 			dispatch(axiosProductsReducerAction());
 			const products = await localStorage.getItem('products');
 			const response: IProduct[] = products ? JSON.parse(products) : null;
-			dispatch(axiosProductsSuccessReducerAction(response));
+			setTimeout(() => {
+				dispatch(axiosProductsSuccessReducerAction(response));
+			}, 500);
 		} catch (e) {
 			dispatch(axiosProductsErrorReducerAction('Ошибка при загрузке товаров'));
 		}
