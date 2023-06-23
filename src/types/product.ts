@@ -1,4 +1,5 @@
 import {IFiltersState} from './filters';
+import {IReview} from "./review";
 
 export interface ProductsState {
 	products: IProduct[];
@@ -12,10 +13,12 @@ export interface IProduct {
 	id: number;
 	title: string;
 	retailPrice?: number | null;
+	description: string;
 	discountPrice: number;
 	brand: string;
 	color: string
-	imgUrl: string;
+	images: string[];
+	reviews: IReview[];
 }
 
 export enum ProductActionTypes {

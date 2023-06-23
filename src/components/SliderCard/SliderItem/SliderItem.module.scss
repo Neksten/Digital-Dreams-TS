@@ -1,0 +1,21 @@
+.sliderItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 7px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid #fff;
+  &.active {
+    border: 1px solid #ffdd60;
+  }
+  &:hover {
+    border: 1px solid #ffdd60;
+  }
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}

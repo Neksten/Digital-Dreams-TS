@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
+import {Link} from 'react-router-dom';
+
 import {IProduct} from '../../types/product';
 import Counter from '../Counter/Counter';
 import {useActions} from '../../hooks/useActions';
@@ -71,19 +73,21 @@ const Card: React.FC<ICardProps> = ({product}) => {
 						: <Heart/>
 					}
 				</div>
-				<div className={styles.cardImage}>
-					<img src={product.imgUrl} alt="product"/>
-				</div>
+				<Link to={`/card/${product.id}`} className={styles.cardImage}>
+					<img src={product.images[0]} alt="product"/>
+				</Link>
 				<span className={styles.cardPrice}>{product.discountPrice} ₽</span>
 				{product.retailPrice && <span className={styles.cardSale}>{product.retailPrice} ₽</span>}
-				<p className={styles.cardName}>{product.title}</p>
+				<Link to={`/card/${product.id}`}>
+					<p className={styles.cardName}>{product.title}</p>
+				</Link>
 			</div>
 			{productCart && productCart.quantity >= 1 ?
 				<Counter handleCountDecrementClick={handleCountDecrementClick}
 				         handleCountIncrementClick={handleCountIncrementClick}
 				         count={productCart.quantity}/>
 				:
-				<div onClick={() => addCartProduct(product)} className={styles.cardBtn}>В корзину</div>
+				<div onClick={() => addCartProduct(product)} className={`${styles.cardBtn} btn`}>В корзину</div>
 			}
 		</div>
 	);

@@ -6,7 +6,6 @@ import classNames from 'classnames/bind';
 
 import {CartIcon} from '../../assets/CartIcon';
 import {Favorite} from '../../assets/Favorite';
-import {User} from '../../assets/User';
 
 import styles from './Header.module.scss';
 

@@ -1,0 +1,45 @@
+.review {
+  padding: 20px;
+  background-color: #EDF1F1;
+  border-radius: 10px;
+  .reviewUser {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    font-size: 12px;
+    margin: 0 0 20px 0;
+    .reviewUserLogo {
+      img {
+        border-radius: 100%;
+        box-shadow: 0 4px 5px 0 rgba(62, 77, 65, 0.15);
+      }
+    }
+    h5 {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .reviewUserTop {
+      display: flex;
+      align-items: center;
+      column-gap: 10px;
+      margin: 0 0 10px 0;
+    }
+    .reviewEstimation {
+      display: flex;
+      align-items: center;
+      column-gap: 3px;
+      svg {
+        width: 15px;
+        height: 15px;
+      }
+    }
+  }
+  .reviewDignities, .reviewDisadvantages , .reviewComment {
+    margin: 0 0 20px 0;
+    .reviewTitle {
+      margin: 0 0 15px 0;
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+}

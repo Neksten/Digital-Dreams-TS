@@ -11,11 +11,19 @@ interface ICounterProps {
 	handleCountIncrementClick: () => void;
 	count: number;
 	hideNull?: boolean;
+	height?: string | undefined;
 }
 
-const Counter: React.FC<ICounterProps> = ({handleCountDecrementClick, handleCountIncrementClick, count, hideNull}) => {
+const Counter: React.FC<ICounterProps> = (
+	{
+		handleCountDecrementClick,
+		handleCountIncrementClick,
+		count,
+		hideNull,
+		height = '30px',
+	}) => {
 	return (
-		<div className={styles.cardCounter}>
+		<div style={height ? {height, lineHeight: height} : {}} className={styles.cardCounter}>
 			<span onClick={handleCountDecrementClick} className={cx(`${styles.decrement}`, {
 				hide: hideNull && count === 1,
 			})}>-</span>

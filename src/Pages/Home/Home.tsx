@@ -2,6 +2,8 @@ import React, {useEffect, useRef, useState} from 'react';
 
 import {useDispatch} from 'react-redux';
 
+import ContentLoader from 'react-content-loader';
+
 import {ArrowScroll} from '../../assets/ArrowScroll';
 import {useTypedSelector} from '../../hooks/useTypedSelector';
 import {useActions} from '../../hooks/useActions';
@@ -16,7 +18,6 @@ import {
 import {filtersList, sortedList} from '../../local-data';
 
 import styles from './Home.module.scss';
-import ContentLoader from "react-content-loader";
 
 const Home: React.FC = () => {
 	const dispatch = useDispatch();

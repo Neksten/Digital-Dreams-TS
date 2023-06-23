@@ -1,21 +1,8 @@
 .heroSidebar {
   .arrange {
-    font-size: 16px;
-    font-weight: 600;
-    display: inline-block;
     height: 40px;
     line-height: 40px;
-    width: 100%;
     margin: 0 0 15px 0;
-    border-radius: 10px;
-    text-align: center;
-    background-color: #E5CFB0;
-    color: #fff;
-    user-select: none;
-    transition: all 0.3s ease-in-out;
-    &:hover {
-      background-color: #D3BA96;
-    }
   }
   .info {
     background-color: #F6F6F6;

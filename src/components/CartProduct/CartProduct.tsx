@@ -10,6 +10,7 @@ import {useActions} from '../../hooks/useActions';
 import {useTypedSelector} from '../../hooks/useTypedSelector';
 
 import styles from './CartProduct.module.scss';
+import {Link} from "react-router-dom";
 const cx = classNames.bind(styles);
 
 interface ICartProductProps {
@@ -54,12 +55,16 @@ const CartProduct: React.FC<ICartProductProps> = ({product, quantity}) => {
 	
 	return (
 		<div className={styles.cartProduct}>
-			<div className={styles.image}>
-				<img src={product.imgUrl} alt="cart product"/>
-			</div>
+			<Link to={`/card/${product.id}`}>
+				<div className={styles.image}>
+					<img src={product.images[0]} alt="cart product"/>
+				</div>
+			</Link>
 			<div className={styles.info}>
 				<div className={styles.left}>
-					<p className={styles.name}>{product.title}</p>
+					<Link to={`/card/${product.id}`}>
+						<p className={styles.name}>{product.title}</p>
+					</Link>
 					<div>
 						<span className={styles.brand}>{product.brand}</span>
 						<div className={styles.management}>

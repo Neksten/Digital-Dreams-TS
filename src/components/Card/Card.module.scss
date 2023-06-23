@@ -20,13 +20,16 @@
     left: 50%;
     transform: translateX(-50%);
     width: 135px;
+    height: 135px;
+    padding: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 0 15px 0;
     user-select: none;
     img {
-      max-width: 100%;
+      max-height: 100%;
+
     }
   }
   .cardPrice {
@@ -48,24 +51,9 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     margin: 0 0 10px 0;
+    color: #333;
   }
   .cardBtn{
-    display: inline-block;
-    border-radius: 5px;
-    font-size: 16px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-  }
-  .cardBtn {
-    background-color: #E5CFB0;
-    color: #fff;
-    cursor: pointer;
-    user-select: none;
-    transition: all 0.3s ease-in-out;
-    &:hover {
-      background-color: #D3BA96;
-    }
   }
   .cardFavorite {
     position: absolute;
