@@ -1,16 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 
 import classNames from 'classnames/bind';
+
+import {Link} from 'react-router-dom';
 
 import {Cross} from '../../assets/Cross';
 import {IProduct} from '../../types/product';
 import Counter from '../Counter/Counter';
-import {useActions} from '../../hooks/useActions';
 
-import {useTypedSelector} from '../../hooks/useTypedSelector';
+import useProductActions from '../../hooks/useProductActions';
 
 import styles from './CartProduct.module.scss';
-import {Link} from "react-router-dom";
+
 const cx = classNames.bind(styles);
 
 interface ICartProductProps {
@@ -19,40 +20,23 @@ interface ICartProductProps {
 }
 
 const CartProduct: React.FC<ICartProductProps> = ({product, quantity}) => {
-	const [favorite, setFavorite] = useState(false);
-	const {favorites} = useTypedSelector(state => state.favorite);
-	const {
-		removeCart,
-		productCountDecrementClick,
-		productCountIncrementClick,
-		addFavorite,
-		removeFavorite,
-	} = useActions();
 	if (!product) {
 		return null; // Обработка случая, когда продукт не определён
 	}
 	
-	const removeCartProduct = () => {
-		removeCart(product.id);
-	};
-	const handleCountIncrementClick = () => {
-		productCountIncrementClick(product.id);
-	};
-	const handleCountDecrementClick = () => {
+	const {
+		favorite,
+		handleCountDecrementClick,
+		handleCountIncrementClick,
+		removeCartProduct,
+		handleFavoriteClick,
+	} = useProductActions(product);
+	
+	const handleDecrementClick = () => {
 		if (quantity !== 1) {
-			productCountDecrementClick(product.id);
+			handleCountDecrementClick();
 		}
 	};
-	function handleFavoriteClick(product: IProduct) {
-		!favorite ? addFavorite(product) : removeFavorite(product.id);
-		setFavorite(!favorite);
-	}
-	
-	useEffect(() => {
-		setFavorite(favorites.some(i => i.idProduct === product.id));
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-	
 	return (
 		<div className={styles.cartProduct}>
 			<Link to={`/card/${product.id}`}>
@@ -92,7 +76,7 @@ const CartProduct: React.FC<ICartProductProps> = ({product, quantity}) => {
 						</span>
 						{product.retailPrice && <span className={styles.sale}>{product.retailPrice} ₽</span>}
 					</div>
-					<Counter handleCountDecrementClick={handleCountDecrementClick}
+					<Counter handleCountDecrementClick={handleDecrementClick}
 					         handleCountIncrementClick={handleCountIncrementClick}
 					         count={quantity}
 					         hideNull={true}

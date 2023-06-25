@@ -30,13 +30,13 @@ const initialFormData: IOrder = {
 	},
 };
 
-const Order:React.FC = () => {
+const Order: React.FC = () => {
 	const navigate = useNavigate();
 	const {cart, finalPrice, finalSale} = useTypedSelector(state => state.cart);
 	const {allRemoveCart, axiosGetCart} = useActions();
 	
-	const [address, setAddress] = useState('');
-	const [formData, setFormData] = useState(initialFormData);
+	const [address, setAddress] = useState<string>('');
+	const [formData, setFormData] = useState<IOrder>(initialFormData);
 	
 	const onSendForm = (e: React.FormEvent<HTMLSpanElement>): void => {
 		e.preventDefault();
@@ -53,6 +53,7 @@ const Order:React.FC = () => {
 			&& /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(user.userEmail)
 			&& addresses.some(i => i.address === address)
 		) {
+			// eslint-disable-next-line no-console
 			console.log(JSON.stringify(formData));
 			allRemoveCart();
 			navigate('/cart');

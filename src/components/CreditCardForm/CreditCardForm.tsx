@@ -13,7 +13,7 @@ interface ICreditCardFormProps {
 }
 
 const CreditCardForm: React.FC<ICreditCardFormProps> = ({formData, setFormData}) => {
-	const [flipped, setFlipped] = useState(false);
+	const [flipped, setFlipped] = useState<boolean>(false);
 	// Приводим номер карты к нужному формату
 	const formattedNumber = (str: string): string => {
 		return str.replace(/\d{4}(?=.)/g, '$& ');
@@ -33,8 +33,8 @@ const CreditCardForm: React.FC<ICreditCardFormProps> = ({formData, setFormData})
 		<div className={styles.creditCardForm}>
 			<div className={styles.creditCard}>
 				<CreditCard number={formData.creditCard.cardNumber
-															? formattedNumber(String(formData.creditCard.cardNumber))
-															: formattedNumber('1234567890123456')}
+					? formattedNumber(String(formData.creditCard.cardNumber))
+					: formattedNumber('1234567890123456')}
 				            name={formData.creditCard.cardHolder.toUpperCase()}
 				            expiry="1225"
 				            cvv={formData.creditCard.cardCvv ? formData.creditCard.cardCvv : '123'}

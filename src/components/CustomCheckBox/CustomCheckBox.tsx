@@ -3,11 +3,11 @@ import './CustomCheckBox.scss';
 import cn from 'classnames';
 
 interface ICustomCheckBoxProps {
-	activeParent: boolean
+	activeParent: boolean;
 }
 
 const CustomCheckBox: React.FC<ICustomCheckBoxProps> = ({activeParent}) => {
-	const [selected, setSelected] = useState(false);
+	const [selected, setSelected] = useState<boolean>(false);
 	
 	// При клике на элемент CustomCheckBox
 	function handleCheckBoxClick() {

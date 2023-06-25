@@ -1,62 +1,24 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 
-import {HeartFill} from "../../assets/HeartFill";
-import {Heart} from "../../assets/Heart";
-import {IProduct} from "../../types/product";
-import {useTypedSelector} from "../../hooks/useTypedSelector";
-import {useActions} from "../../hooks/useActions";
-import {ICartProduct} from "../../types/cart";
-import Counter from "../Counter/Counter";
+import {HeartFill} from '../../assets/HeartFill';
+import {Heart} from '../../assets/Heart';
+import {IProduct} from '../../types/product';
+import Counter from '../Counter/Counter';
+
+import useProductActions from '../../hooks/useProductActions';
 
 import styles from './CardProductInfo.module.scss';
 
 const CardProductInfo: React.FC<IProduct> = (product) => {
-	const {id, title, discountPrice, retailPrice, brand, color} = product;
-	const [favorite, setFavorite] = useState(false);
-	const {cart} = useTypedSelector(state => state.cart);
-	const {favorites} = useTypedSelector(state => state.favorite);
-	
-	// Получаем элемент из корзины если он есть
-	const productCart: ICartProduct | undefined = [...cart].find((i) => i.idProduct === product.id);
-	
+	const {title, discountPrice, retailPrice, brand, color} = product;
 	const {
-		addCart,
-		removeCart,
-		productCountDecrementClick,
-		productCountIncrementClick,
-		addFavorite,
-		removeFavorite,
-	} = useActions();
-	
-	function handleCountDecrementClick() {
-		productCountDecrementClick(id);
-	}
-	function handleCountIncrementClick() {
-		productCountIncrementClick(id);
-	}
-	function addCartProduct(product: IProduct) {
-		addCart(product);
-	}
-	function removeCartProduct(product: IProduct) {
-		removeCart(product.id);
-	}
-	function handleFavoriteClick(product: IProduct) {
-		!favorite ? addFavorite(product) : removeFavorite(product.id);
-		setFavorite(!favorite);
-	}
-	
-	useEffect(() => {
-		setFavorite(favorites.some(i => i.idProduct === id));
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-	
-	useEffect(() => {
-		// Удалить из корзины если счётчик 0
-		if (productCart && !productCart.quantity) {
-			removeCartProduct(product);
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [productCart && productCart.quantity, id]);
+		favorite,
+		handleCountDecrementClick,
+		handleCountIncrementClick,
+		productCart,
+		addCartProduct,
+		handleFavoriteClick,
+	} = useProductActions(product);
 	
 	return (
 		<div className={styles.cardProductInfo}>

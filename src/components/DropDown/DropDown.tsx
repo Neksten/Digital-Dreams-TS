@@ -8,7 +8,6 @@ import OutsideClickHandler from '../OutsideClickHandler';
 
 import styles from './DropDown.module.scss';
 
-
 const cx = classNames.bind(styles);
 
 interface DropDownProps {
@@ -19,7 +18,7 @@ interface DropDownProps {
 }
 
 const DropDown: React.FC<DropDownProps> = (props) => {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState<boolean>(false);
 	
 	const options = props.list;
 	
@@ -27,6 +26,7 @@ const DropDown: React.FC<DropDownProps> = (props) => {
 	function toggleDropdown() {
 		setIsOpen(!isOpen);
 	}
+	
 	// При клике на элемент dropdown
 	function handleOptionClick(option: string) {
 		props.setSelectionOption(option);

@@ -20,19 +20,19 @@ const Header = () => {
 		<div className={cx(`${styles.header}`, {
 			absolute: currentUrl === '/',
 		})}>
-				<div className="container">
-					<nav className={styles.menu}>
-						<NavLink to="/"><h4 className={styles.title}>DigitalDreams</h4></NavLink>
-						<ul className={styles.list}>
-							<li>
-								<NavLink to="/cart" className={styles.link}><CartIcon/></NavLink>
-							</li>
-							<li>
-								<NavLink to="/favorite" className={styles.link}><Favorite/></NavLink>
-							</li>
-						</ul>
-					</nav>
-				</div>
+			<div className="container">
+				<nav className={styles.menu}>
+					<NavLink to="/"><h4 className={styles.title}>DigitalDreams</h4></NavLink>
+					<ul className={styles.list}>
+						<li>
+							<NavLink to="/cart" className={styles.link}><CartIcon/></NavLink>
+						</li>
+						<li>
+							<NavLink to="/favorite" className={styles.link}><Favorite/></NavLink>
+						</li>
+					</ul>
+				</nav>
+			</div>
 		</div>
 	);
 };

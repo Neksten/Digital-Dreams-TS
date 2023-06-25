@@ -8,11 +8,12 @@ interface SliderItemProps {
 	activeSlide: number;
 	handleClickArrowSlide: (id: number) => void;
 }
+
 const SliderItem: React.FC<SliderItemProps> = ({imgUrl, id, activeSlide, handleClickArrowSlide}) => {
 	return (
 		<div onClick={() => handleClickArrowSlide(id)}
 		     className={`${styles.sliderItem} ${activeSlide === id && styles.active}`}>
-			<img src={imgUrl} alt=""/>
+			<img src={imgUrl} alt="image slide"/>
 		</div>
 	);
 };

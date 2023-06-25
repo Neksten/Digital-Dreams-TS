@@ -4,25 +4,27 @@ import {ArrowPrev} from '../../assets/ArrowPrev';
 import {ArrowNext} from '../../assets/ArrowNext';
 
 import styles from './SliderCard.module.scss';
-import SliderItem from "./SliderItem/SliderItem";
+import SliderItem from './SliderItem/SliderItem';
 
-const SliderCard: React.FC<{images: string[]}> = ({images}) => {
-	const [activeSlide, setActiveSlide] = useState(0);
-	const [slidesValue, setSlidesValue] = useState({start: 0, end: 4});
-	const [topSlides, setTopSlides] = useState(0);
+const HEIGHT_IMAGE = 42;
+
+const SliderCard: React.FC<{ images: string[] }> = ({images}) => {
+	const [activeSlide, setActiveSlide] = useState<number>(0);
+	const [slidesValue, setSlidesValue] = useState<{ start: number, end: number }>({start: 0, end: 4});
+	const [topSlides, setTopSlides] = useState<number>(0);
 	
 	// стрелка вверх
 	const handleClickArrowPrev = () => {
 		if (slidesValue.start - 1 !== -1) {
-			setSlidesValue(prev => ({ ...prev, start: prev.start - 1, end: prev.end - 1}));
-			setTopSlides(prev => prev + 42);
+			setSlidesValue(prev => ({...prev, start: prev.start - 1, end: prev.end - 1}));
+			setTopSlides(prev => prev + HEIGHT_IMAGE);
 		}
 	};
 	// стрелка вниз
 	const handleClickArrowNext = () => {
 		if (slidesValue.end + 1 <= images.length) {
-			setSlidesValue(prev => ({ ...prev, start: prev.start + 1, end: prev.end + 1}));
-			setTopSlides(prev => prev - 42);
+			setSlidesValue(prev => ({...prev, start: prev.start + 1, end: prev.end + 1}));
+			setTopSlides(prev => prev - HEIGHT_IMAGE);
 		}
 	};
 	// клик по слайду
@@ -36,7 +38,7 @@ const SliderCard: React.FC<{images: string[]}> = ({images}) => {
 		<div className={styles.cardSlider}>
 			<div className={styles.cardSliderImages}>
 				{images.length >= 4 &&
-					<div style={slidesValue.start === 0 ? {opacity: "0.2", cursor: "default"} : {}}
+					<div style={slidesValue.start === 0 ? {opacity: '0.2', cursor: 'default'} : {}}
 					     onClick={handleClickArrowPrev}
 					     className={styles.cardSliderArrowPrev}>
 						<ArrowPrev/>
@@ -56,7 +58,7 @@ const SliderCard: React.FC<{images: string[]}> = ({images}) => {
 					</div>
 				</div>
 				{images.length >= 4 &&
-					<div style={slidesValue.end === images.length ? {opacity: "0.2", cursor: "default"} : {}}
+					<div style={slidesValue.end === images.length ? {opacity: '0.2', cursor: 'default'} : {}}
 					     onClick={handleClickArrowNext}
 					     className={styles.cardSliderArrowNext}>
 						<ArrowNext/>
@@ -65,7 +67,7 @@ const SliderCard: React.FC<{images: string[]}> = ({images}) => {
 			</div>
 			<div className={styles.cardSliderImgHero}>
 				<div className={styles.cardSliderImgHeroContainer}>
-					<img src={images[activeSlide]} alt=""/>
+					<img src={images[activeSlide]} alt="active slide"/>
 				</div>
 			</div>
 		</div>

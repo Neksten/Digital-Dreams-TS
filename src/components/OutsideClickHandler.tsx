@@ -6,7 +6,7 @@ interface IOutsideClickHandlerProps {
 }
 
 // Выполнит onOutsideClick если клик произошел вне элемента
-const OutsideClickHandler: React.FC<IOutsideClickHandlerProps> = ({ onOutsideClick, children }) => {
+const OutsideClickHandler: React.FC<IOutsideClickHandlerProps> = ({onOutsideClick, children}) => {
 	const ref = useRef<HTMLDivElement>({} as HTMLDivElement);
 	
 	useEffect(() => {
@@ -21,8 +21,7 @@ const OutsideClickHandler: React.FC<IOutsideClickHandlerProps> = ({ onOutsideCli
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [onOutsideClick]);
 	
 	return <div ref={ref}>{children}</div>;
 };

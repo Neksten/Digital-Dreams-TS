@@ -13,15 +13,15 @@ interface ICustomInputFormProps {
 }
 
 const CustomInputForm: React.FC<ICustomInputFormProps> = ({
-		name,
-		htmlFor,
-		placeholder,
-		value,
-		setValue,
-	  handleClick,
-	  handleBlur,
-	}) => {
-	const [textError, setTextError] = useState('');
+	                                                          name,
+	                                                          htmlFor,
+	                                                          placeholder,
+	                                                          value,
+	                                                          setValue,
+	                                                          handleClick,
+	                                                          handleBlur,
+                                                          }) => {
+	const [textError, setTextError] = useState<string>('');
 	const inputRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 	
 	const errorStatus = (text: string): void => {
@@ -32,9 +32,9 @@ const CustomInputForm: React.FC<ICustomInputFormProps> = ({
 	};
 	
 	const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
-		const { value } = e.target;
+		const {value} = e.target;
 		
-		const validationConditions: {[key:string]:boolean} = {
+		const validationConditions: { [key: string]: boolean } = {
 			userName: /^([a-zA-Zа-яА-Я]+)$/.test(value) || value === '',
 			userSurname: /^([a-zA-Zа-яА-Я]+)$/.test(value) || value === '',
 			userPhone: value.length <= 12 && /^\d+$/.test(value.slice(1)),
@@ -72,7 +72,7 @@ const CustomInputForm: React.FC<ICustomInputFormProps> = ({
 	};
 	
 	function onBlurCustomInput(): void {
-		const errorMessages: {[key: string]: string} = {
+		const errorMessages: { [key: string]: string } = {
 			userPhone: 'Номер телефона должен состоять из 11 цифр.',
 			userEmail: 'Введите почту правильно',
 			cardCvv: 'Введите cvv',

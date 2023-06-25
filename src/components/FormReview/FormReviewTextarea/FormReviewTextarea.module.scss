@@ -1,0 +1,31 @@
+.formReviewTextarea {
+  label, span {
+    font-size: 12px;
+    opacity: 0.5;
+    user-select: none;
+    display: inline-block;
+    width: 100%;
+  }
+  label, textarea {
+    margin: 0 0 5px 0;
+  }
+  textarea {
+    width: 100%;
+    height: 100px;
+    background-color: #fff;
+    border: 1px solid #E4E4E4;
+    border-radius: 5px;
+    resize: none;
+    padding: 7px;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      border: 1px solid #c20000;
+    }
+  }
+  .error {
+    padding: 5px 0;
+    color: #c20000;
+    font-size: 12px;
+    opacity: 1;
+  }
+}

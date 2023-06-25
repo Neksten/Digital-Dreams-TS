@@ -1,68 +1,40 @@
-import React, {useEffect, useState} from 'react';
+import React, {useMemo} from 'react';
 
 import {Link} from 'react-router-dom';
 
 import {IProduct} from '../../types/product';
 import Counter from '../Counter/Counter';
-import {useActions} from '../../hooks/useActions';
-import {useTypedSelector} from '../../hooks/useTypedSelector';
-import {ICartProduct} from '../../types/cart';
 import {Heart} from '../../assets/Heart';
 
 import {HeartFill} from '../../assets/HeartFill';
 
+import {Star} from '../../assets/Star';
+import {Comment} from '../../assets/Comment';
+import useProductActions from '../../hooks/useProductActions';
+
 import styles from './Card.module.scss';
 
 interface ICardProps {
-	product: IProduct
+	product: IProduct;
 }
 
 const Card: React.FC<ICardProps> = ({product}) => {
-	const [favorite, setFavorite] = useState(false);
-	const {cart} = useTypedSelector(state => state.cart);
-	const {favorites} = useTypedSelector(state => state.favorite);
-	
 	const {
-		addCart,
-		removeCart,
-		productCountDecrementClick,
-		productCountIncrementClick,
-		addFavorite,
-		removeFavorite,
-	} = useActions();
+		favorite,
+		handleCountDecrementClick,
+		handleCountIncrementClick,
+		addCartProduct,
+		productCart,
+		handleFavoriteClick,
+	} = useProductActions(product);
 	
-	// Получаем элемент из корзины если он есть
-	const productCart: ICartProduct | undefined = [...cart].find((i) => i.idProduct === product.id);
-	
-	function handleCountDecrementClick() {
-		productCountDecrementClick(product.id);
-	}
-	function handleCountIncrementClick() {
-		productCountIncrementClick(product.id);
-	}
-	function addCartProduct(product: IProduct) {
-		addCart(product);
-	}
-	function removeCartProduct(product: IProduct) {
-		removeCart(product.id);
-	}
-	function handleFavoriteClick(product: IProduct) {
-		!favorite ? addFavorite(product) : removeFavorite(product.id);
-		setFavorite(!favorite);
-	}
-	
-	useEffect(() => {
-		setFavorite(favorites.some(i => i.idProduct === product.id));
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
-	useEffect(() => {
-		// Удалить из корзины если счётчик 0
-		if (productCart && !productCart.quantity) {
-			removeCartProduct(product);
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [productCart && productCart.quantity, product.id]);
+	const rating = useMemo(() => (
+		product.reviews.length > 0
+			?
+			Math.round((product.reviews.reduce((acc, i) => acc + i.estimation, 0) / product.reviews.length) * 10) / 10
+			:
+			0
+	), [product.reviews]);
 	
 	return (
 		<div className={styles.card}>
@@ -73,14 +45,32 @@ const Card: React.FC<ICardProps> = ({product}) => {
 						: <Heart/>
 					}
 				</div>
-				<Link to={`/card/${product.id}`} className={styles.cardImage}>
-					<img src={product.images[0]} alt="product"/>
-				</Link>
-				<span className={styles.cardPrice}>{product.discountPrice} ₽</span>
-				{product.retailPrice && <span className={styles.cardSale}>{product.retailPrice} ₽</span>}
+				<div className={styles.cardTop}>
+					<Link to={`/card/${product.id}`} className={styles.cardImage}>
+						<img src={product.images[0]} alt="product"/>
+					</Link>
+					<span className={styles.cardPrice}>{product.discountPrice} ₽</span>
+					{product.retailPrice && <span className={styles.cardSale}>{product.retailPrice} ₽</span>}
+				</div>
 				<Link to={`/card/${product.id}`}>
 					<p className={styles.cardName}>{product.title}</p>
 				</Link>
+				<div className={styles.rating}>
+					<div className={styles.ratingItem}>
+						<div className={styles.stars}>
+							<div className={styles.star}>
+								<Star color={rating ? '#FF9518' : '#B7B7B7'}/>
+							</div>
+						</div>
+						<span>{rating}</span>
+					</div>
+					<div className={styles.ratingItem}>
+						<div className={styles.reviewsQuantity}>
+							<Comment/>
+						</div>
+						<span>{product.reviews.length}</span>
+					</div>
+				</div>
 			</div>
 			{productCart && productCart.quantity >= 1 ?
 				<Counter handleCountDecrementClick={handleCountDecrementClick}

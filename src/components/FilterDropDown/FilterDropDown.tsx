@@ -18,7 +18,7 @@ interface IFilterDropDownProps {
 }
 
 const FilterDropDown: React.FC<IFilterDropDownProps> = (props) => {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const options = props.list;
 	
 	// открытие/закрытие
@@ -29,7 +29,7 @@ const FilterDropDown: React.FC<IFilterDropDownProps> = (props) => {
 	return (
 		<div className={styles.filterDropdown}>
 			<OutsideClickHandler onOutsideClick={setIsOpen}>
-				<div onClick={toggleDropdown} className={styles.top}>{props.title}  <span><ArrowDown/></span></div>
+				<div onClick={toggleDropdown} className={styles.top}>{props.title} <span><ArrowDown/></span></div>
 				{isOpen &&
 					<div className={styles.body}>
 						<ul>

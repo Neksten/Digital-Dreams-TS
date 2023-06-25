@@ -14,19 +14,22 @@ interface ISidebarFinalProps {
 }
 
 const SidebarFinal: React.FC<ISidebarFinalProps> = ({
-		redirect,
-		textBtn,
-		length,
-		totalSale,
-		totalPrice,
-		send,
-		onSendForm,
-	}) => {
+	                                                    redirect,
+	                                                    textBtn,
+	                                                    length,
+	                                                    totalSale,
+	                                                    totalPrice,
+	                                                    send,
+	                                                    onSendForm,
+                                                    }) => {
 	
 	return (
 		<div className={styles.heroSidebar}>
 			<Link to={redirect ? redirect : ''}>
-				<span onClick={(e) => send && onSendForm && onSendForm(e) } className={`${styles.arrange} btn`}>{textBtn}</span>
+				<span onClick={(e) => send && onSendForm && onSendForm(e)}
+				      className={`${styles.arrange} btn`}>
+					{textBtn}
+				</span>
 			</Link>
 			<div className={styles.info}>
 				<span className={styles.total}>Всего: {length} товара</span>

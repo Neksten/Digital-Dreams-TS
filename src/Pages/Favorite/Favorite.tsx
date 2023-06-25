@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import ContentLoader from 'react-content-loader';
 
 import Card from '../../components/Card/Card';
 import {useTypedSelector} from '../../hooks/useTypedSelector';
@@ -7,6 +6,8 @@ import {useActions} from '../../hooks/useActions';
 
 import {IProduct} from '../../types/product';
 import {FavoriteEmpty} from '../../assets/FavoriteEmpty';
+
+import ContentLoaderCard from '../../components/ContentLoaderCard';
 
 import styles from './Favorite.module.scss';
 
@@ -26,8 +27,7 @@ const Favorite = () => {
 	}, []);
 	useEffect(() => {
 		setFavoriteProducts(products.filter(i => favorites.some(favorite => favorite.idProduct === i.id)));
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [favorites]);
+	}, [products, favorites]);
 	
 	return (
 		<main className={`${styles.favorite} page`}>
@@ -44,28 +44,7 @@ const Favorite = () => {
 								{
 									loading
 										?
-										[...Array(10)].map((i, idx) => (
-											<div key={idx} className="loader">
-												<ContentLoader
-													speed={2}
-													width={210}
-													height={320}
-													viewBox="0 0 210 320"
-													backgroundColor="#f3f3f3"
-													foregroundColor="#ecebeb"
-												>
-													<rect x="15" y="173" rx="3" ry="3" width="70" height="16" />
-													<rect x="15" y="280" rx="8" ry="8" width="180" height="30" />
-													<rect x="38" y="10" rx="15" ry="15" width="134" height="140" />
-													<rect x="480" y="30" rx="5" ry="5" width="70" height="20" />
-													<rect x="480" y="56" rx="5" ry="5" width="45" height="12" />
-													<rect x="480" y="110" rx="5" ry="5" width="113" height="30" />
-													<rect x="15" y="196" rx="3" ry="3" width="50" height="10" />
-													<rect x="15" y="227" rx="3" ry="3" width="180" height="15" />
-													<rect x="15" y="248" rx="3" ry="3" width="130" height="15" />
-												</ContentLoader>
-											</div>
-										))
+										<ContentLoaderCard length={10}/>
 										:
 										favoriteProducts.map((i) =>
 											<Card key={i.id} product={i}/>,

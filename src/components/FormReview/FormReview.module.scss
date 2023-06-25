@@ -1,0 +1,79 @@
+.formReview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.3);
+  z-index: 100;
+  padding: 50px 10px;
+  overflow-y: auto;
+  animation-name: manifestation;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+  .formReviewWrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .formReviewContent {
+    position: relative;
+    opacity: 1;
+    z-index: 200;
+    width: 730px;
+    padding: 50px;
+    border-radius: 20px;
+    background-color: #fff;
+    .formReviewItems {
+      display: flex;
+      flex-direction: column;
+      row-gap: 20px;
+      margin: 0 0 20px 0;
+    }
+    h4 {
+      font-weight: 700;
+      font-size: 30px;
+      margin: 0 0 20px 0;
+    }
+    .formReviewClose {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+    }
+    .formReviewInputName {
+      margin: 0 0 30px 0;
+    }
+    .formReviewBtn {
+      width: 185px;
+      &:hover {
+        background-color: #E5CFB0;
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    .formReviewContent {
+      width: 100%;
+    }
+  }
+  @media (max-width: 480px) {
+    .formReviewContent {
+      padding: 20px;
+    }
+    h4 {
+      font-size: 25px;
+    }
+  }
+}
+@keyframes manifestation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

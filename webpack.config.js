@@ -1,42 +1,43 @@
-const path = require('path')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
-const HTMLWebpackPlugin = require('html-webpack-plugin')
+const path = require('path');
+
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = async () => {
 	const getPort = (await import('get-port')).default;
-	const port = await getPort({ port: 3000 });
+	const port = await getPort({port: 3000});
 	
 	return {
-		mode: "development",
-		entry: ["@babel/polyfill", "./src/index.tsx"],
+		mode: 'development',
+		entry: ['@babel/polyfill', './src/index.tsx'],
 		output: {
-			path: path.resolve(__dirname, "dist"),
-			filename: "bundle.js",
-			publicPath: "/"
+			path: path.resolve(__dirname, 'dist'),
+			filename: 'bundle.js',
+			publicPath: '/',
 		},
 		devServer: {
 			port: port,
 			watchFiles: ['src/**/*'],
-			historyApiFallback: true
+			historyApiFallback: true,
 		},
 		resolve: {
 			extensions: ['.tsx', '.ts', '.js'],
 			alias: {
-				"/assets/unresolved/img.png": path.resolve(
+				'/assets/unresolved/img.png': path.resolve(
 					__dirname,
-					"assets/real-path-to-img/img.png"
+					'assets/real-path-to-img/img.png',
 				),
 			},
 		},
 		plugins: [
-			new HTMLWebpackPlugin({template: './src/index.html'}),
-			new CleanWebpackPlugin()
+			new HTMLWebpackPlugin({template: './public/index.html'}),
+			new CleanWebpackPlugin(),
 		],
 		module: {
 			rules: [
 				{
 					test: /\.(css|sass|scss)$/,
-					use: ["style-loader", "css-loader", "sass-loader"]
+					use: ['style-loader', 'css-loader', 'sass-loader'],
 				},
 				{
 					test: /\.(png|svg|jpg|jpeg|gif)$/i,
@@ -46,11 +47,11 @@ module.exports = async () => {
 					test: /\.m?js$/,
 					exclude: /node_modules/,
 					use: {
-						loader: "babel-loader",
+						loader: 'babel-loader',
 						options: {
-							presets: ["@babel/preset-env"]
-						}
-					}
+							presets: ['@babel/preset-env'],
+						},
+					},
 				},
 				{
 					test: /\.tsx?$/,
@@ -61,13 +62,13 @@ module.exports = async () => {
 					test: /\.m?jsx$/,
 					exclude: /node_modules/,
 					use: {
-						loader: "babel-loader",
+						loader: 'babel-loader',
 						options: {
-							presets: ["@babel/preset-env", "@babel/preset-react"]
-						}
-					}
+							presets: ['@babel/preset-env', '@babel/preset-react'],
+						},
+					},
 				},
 			],
 		},
-	}
-}
+	};
+};

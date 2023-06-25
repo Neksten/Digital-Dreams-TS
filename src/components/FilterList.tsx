@@ -16,7 +16,7 @@ import FilterDropDown from './FilterDropDown/FilterDropDown';
 
 
 interface IFilterListProps {
-	filters: FilterOption[]
+	filters: FilterOption[];
 }
 
 const FilterList: React.FC<IFilterListProps> = ({filters}) => {
@@ -34,6 +34,7 @@ const FilterList: React.FC<IFilterListProps> = ({filters}) => {
 		}
 		dispatch(filterProductsReducerAction());
 	}
+	
 	// Убрать фильтр из активных
 	function removeOptionFilter(option: string, title: string) {
 		switch (title) {

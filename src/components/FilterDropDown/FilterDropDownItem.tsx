@@ -11,7 +11,7 @@ interface IFilterDropDownItemProps {
 	title: string;
 }
 
-const FilterDropDownItem: React.FC <IFilterDropDownItemProps> = (
+const FilterDropDownItem: React.FC<IFilterDropDownItemProps> = (
 	{
 		option,
 		addOptionFilter,
@@ -19,7 +19,7 @@ const FilterDropDownItem: React.FC <IFilterDropDownItemProps> = (
 		selectedOptions,
 		title,
 	}) => {
-	const [selected, setSelected] = useState(false);
+	const [selected, setSelected] = useState<boolean>(false);
 	
 	// активный/неактивный
 	function handleOptionClick() {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {YMaps, Map} from '@pbe/react-yandex-maps';
 
 import OutsideClickHandler from '../OutsideClickHandler';
@@ -16,13 +16,14 @@ interface IYandexMapProps {
 }
 
 const YandexMap: React.FC<IYandexMapProps> = ({value, setValue, addresses}) => {
-	const [hideList, setHideList] = useState(false);
-	const [addressesList, setAddressesList] = useState(addresses);
-
+	const [hideList, setHideList] = useState<boolean>(false);
+	const [addressesList, setAddressesList] = useState<Address[]>(addresses);
+	
 	// клик по адресу
 	function onClickItemList(address: string) {
 		setValue(address);
 	}
+	
 	// поиск по адресам
 	function searchInput(valueInput: string) {
 		setValue(valueInput);

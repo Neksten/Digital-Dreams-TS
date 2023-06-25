@@ -6,24 +6,15 @@ import {Provider} from 'react-redux';
 
 import App from './App';
 import {store} from './store';
-import {products} from './local-data';
+import {initialLocalData} from './local-data';
 
-// если нету корзины, то создать пустую
-if (!localStorage.getItem('cart')) {
-	localStorage.setItem('cart', JSON.stringify({products: [], finalPrice: 0, finalSale: 0}));
-}
-if (!localStorage.getItem('favorite')) {
-	localStorage.setItem('favorite', JSON.stringify([]));
-}
-if (!localStorage.getItem('products')) {
-	localStorage.setItem('products', JSON.stringify(products));
-}
+initialLocalData();
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 root.render(
   <Provider store={store}>
-	  <App />
+	<App/>
   </Provider>,
 );

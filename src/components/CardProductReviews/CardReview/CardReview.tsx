@@ -1,12 +1,12 @@
 import React from 'react';
 
-import styles  from './CardReview.module.scss';
+import {Star} from '../../../assets/Star';
+import {IReview} from '../../../types/review';
 
-import {Star} from "../../../assets/Star";
-import {IReview} from "../../../types/review";
+import styles from './CardReview.module.scss';
 
 interface ICardReviewProps {
-	review: IReview
+	review: IReview;
 }
 
 const CardReview: React.FC<ICardReviewProps> = ({review}) => {
@@ -28,11 +28,11 @@ const CardReview: React.FC<ICardReviewProps> = ({review}) => {
 			</div>
 			<div className={styles.reviewDignities}>
 				<h4 className={styles.reviewTitle}>Достоинства</h4>
-				<p>{dignities}</p>
+				<p>{dignities || 'Нет'}</p>
 			</div>
 			<div className={styles.reviewDisadvantages}>
 				<h4 className={styles.reviewTitle}>Недостатки</h4>
-				<p>{disadvantages}</p>
+				<p>{disadvantages || 'Нет'}</p>
 			</div>
 			<div className={styles.reviewComment}>
 				<h4 className={styles.reviewTitle}>Комментарий</h4>

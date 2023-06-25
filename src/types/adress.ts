@@ -1,4 +1,4 @@
 export interface Address {
-	geometry: number[],
-	address: string
+  geometry: number[];
+  address: string;
 }

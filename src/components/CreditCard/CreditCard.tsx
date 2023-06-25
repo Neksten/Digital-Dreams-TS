@@ -14,7 +14,7 @@ interface ICreditCardProps {
 	flipped: boolean
 }
 
-const CreditCard: React.FC<ICreditCardProps> = ({ number, name , expiry, cvv, flipped }) => {
+const CreditCard: React.FC<ICreditCardProps> = ({number, name, expiry, cvv, flipped}) => {
 	// Приводим дату истечения срока действия к нужному формату
 	const formattedExpiry = expiry.replace(/(\d{2})(\d{2})/, '$1/$2');
 	

@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import ContentLoader from 'react-content-loader';
 
 import {useTypedSelector} from '../../hooks/useTypedSelector';
 import {useActions} from '../../hooks/useActions';
@@ -8,12 +7,13 @@ import CartProduct from '../../components/CartProduct/CartProduct';
 import {IProduct} from '../../types/product';
 import SidebarFinal from '../../components/SidebarFinal/SidebarFinal';
 
+import ContentLoaderCartProduct from '../../components/ContentLoaderCartProduct';
+
 import styles from './Cart.module.scss';
 
 const Cart: React.FC = () => {
 	const {cart, finalPrice, finalSale, loading} = useTypedSelector(state => state.cart);
 	const {products} = useTypedSelector(state => state.product);
-	
 	const {axiosGetFavorite, axiosGetCart, axiosGetProducts} = useActions();
 	
 	const cartLength = cart.length;
@@ -43,27 +43,7 @@ const Cart: React.FC = () => {
 								<div className={styles.heroProducts}>
 									{loading
 										?
-										[...Array(3)].map((i, idx) => (
-											<div key={idx} className="loader">
-												<ContentLoader
-													speed={2}
-													width={670}
-													height={143}
-													viewBox="0 0 670 143"
-													backgroundColor="#f3f3f3"
-													foregroundColor="#ecebeb"
-												>
-													<rect x="18" y="18" rx="15" ry="15" width="110" height="110" />
-													<rect x="150" y="18" rx="5" ry="5" width="205" height="17" />
-													<rect x="150" y="44" rx="5" ry="5" width="110" height="17" />
-													<rect x="150" y="86" rx="5" ry="5" width="60" height="17" />
-													<rect x="150" y="111" rx="5" ry="5" width="80" height="17" />
-													<rect x="525" y="18" rx="5" ry="5" width="70" height="20" />
-													<rect x="525" y="44" rx="5" ry="5" width="45" height="12" />
-													<rect x="525" y="98" rx="5" ry="5" width="130" height="30" />
-												</ContentLoader>
-											</div>
-										))
+										<ContentLoaderCartProduct length={3}/>
 										:
 										cart.map(product => (
 											<CartProduct key={product.id}

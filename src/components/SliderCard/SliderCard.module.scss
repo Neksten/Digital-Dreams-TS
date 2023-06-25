@@ -7,7 +7,7 @@
   .cardSliderImages {
     display: flex;
     flex-direction: column;
-    row-gap: 20px;
+    gap: 20px;
     padding: 5px 0;
   }
   .cardSliderSlidesContainer {
@@ -43,6 +43,29 @@
     img {
       max-width: 100%;
       max-height: 100%;
+    }
+  }
+  @media (max-width: 992px) {
+    align-items: center;
+  }
+  @media (max-width: 768px) {
+    .cardSliderImgHero {
+      width: 340px;
+      height: 380px;
+      .cardSliderImgHeroContainer {
+        width: 340px;
+        height: 480px;
+      }
+    }
+  }
+  @media (max-width: 480px) {
+    .cardSliderImgHero {
+      width: 180px;
+      height: 220px;
+      .cardSliderImgHeroContainer {
+        width: 180px;
+        height: 220px;
+      }
     }
   }
 }
