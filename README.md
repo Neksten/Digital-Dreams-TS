@@ -60,7 +60,7 @@ _Необходимый функционал:_
 
 Подготовительные действия:
 
-1.  Произвести клонирование репозитория в свою папку `git clone https://github.com/Neksten/Digital-Dreams.git`
+1.  Произвести клонирование репозитория в свою папку `git clone https://github.com/Neksten/Digital-Dreams-TS.git`
 2.  Прописать в консоли `npm i`
 
 ---
