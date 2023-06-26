@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 
 import {useTypedSelector} from '../../hooks/useTypedSelector';
 import {useActions} from '../../hooks/useActions';
@@ -18,8 +18,8 @@ const Cart: React.FC = () => {
 	
 	const cartLength = cart.length;
 	
-	const searchProduct = (idProduct: number): IProduct | undefined =>
-		products.find((i) => i.id === idProduct);
+	const searchProduct = useCallback((idProduct: number): IProduct | undefined =>
+		products.find((i) => i.id === idProduct), [products]);
 	
 	useEffect(() => {
 		axiosGetFavorite();

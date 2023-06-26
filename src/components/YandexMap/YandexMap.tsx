@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {YMaps, Map} from '@pbe/react-yandex-maps';
 
 import OutsideClickHandler from '../OutsideClickHandler';
@@ -20,22 +20,21 @@ const YandexMap: React.FC<IYandexMapProps> = ({value, setValue, addresses}) => {
 	const [addressesList, setAddressesList] = useState<Address[]>(addresses);
 	
 	// клик по адресу
-	function onClickItemList(address: string) {
+	const onClickItemList = (address: string) => {
 		setValue(address);
-	}
+	};
 	
 	// поиск по адресам
-	function searchInput(valueInput: string) {
-		setValue(valueInput);
-		setAddressesList(addresses);
-		if (valueInput) {
-			setAddressesList(addresses.filter(i => i.address.toLowerCase().includes(value.toLowerCase())));
-		}
-		// при вводе валидного адреса с клавиатуры
-		addressesList.some(i => i.address.toLowerCase().includes(value.toLowerCase()))
-			? setHideList(true)
-			: setHideList(false);
-	}
+	const searchInput = useCallback((valueInput: string) => {
+			setValue(valueInput);
+			setAddressesList(addresses);
+			if (valueInput) {
+				setAddressesList(addresses.filter(i => i.address.toLowerCase().includes(value.toLowerCase())));
+			}
+			addressesList.some(i => i.address.toLowerCase().includes(value.toLowerCase()))
+				? setHideList(true)
+				: setHideList(false);
+		}, [setValue, value, addressesList, addresses]);
 	
 	return (
 		<div className={styles.map}>
@@ -85,4 +84,4 @@ const YandexMap: React.FC<IYandexMapProps> = ({value, setValue, addresses}) => {
 	);
 };
 
-export default YandexMap;
+export default React.memo(YandexMap);

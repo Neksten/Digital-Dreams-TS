@@ -22,9 +22,9 @@ const FilterDropDown: React.FC<IFilterDropDownProps> = (props) => {
 	const options = props.list;
 	
 	// открытие/закрытие
-	function toggleDropdown() {
+	const toggleDropdown = () => {
 		setIsOpen(!isOpen);
-	}
+	};
 	
 	return (
 		<div className={styles.filterDropdown}>

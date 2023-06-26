@@ -10,12 +10,12 @@ const OutsideClickHandler: React.FC<IOutsideClickHandlerProps> = ({onOutsideClic
 	const ref = useRef<HTMLDivElement>({} as HTMLDivElement);
 	
 	useEffect(() => {
-		function handleClickOutside(event: MouseEvent | TouchEvent) {
+		const handleClickOutside = (event: MouseEvent | TouchEvent) => {
 			// если клик произошел вне dropdown, то закрыть его
 			if (ref.current && event.target && !ref.current.contains(event.target as Node)) {
 				onOutsideClick(false);
 			}
-		}
+		};
 		
 		document.addEventListener('mousedown', handleClickOutside);
 		return () => {

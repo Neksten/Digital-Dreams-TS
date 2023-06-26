@@ -2,7 +2,7 @@ import {IProduct} from './types/product';
 import {FilterOption} from './types/filters';
 import {Address} from './types/adress';
 
-export function initialLocalData(): void {
+export const initialLocalData = (): void => {
   // если нету корзины;избранного;товаров, то создать
   if (!localStorage.getItem('cart')) {
 	localStorage.setItem('cart', JSON.stringify({products: [], finalPrice: 0, finalSale: 0}));
@@ -13,7 +13,7 @@ export function initialLocalData(): void {
   if (!localStorage.getItem('products')) {
 	localStorage.setItem('products', JSON.stringify(products));
   }
-}
+};
 
 export const products: IProduct[] = [
   {

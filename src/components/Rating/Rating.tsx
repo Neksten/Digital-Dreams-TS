@@ -11,10 +11,10 @@ interface IRatingProps {
 const Rating: React.FC<IRatingProps> = ({setRating}) => {
 	const [hideStars, setHideStars] = useState<number>(5);
 	
-	function handleClickStar(index: number): void {
+	const handleClickStar = (index: number): void => {
 		setHideStars(index);
 		setRating(index + 1);
-	}
+	};
 	
 	return (
 		<div className={styles.rating}>

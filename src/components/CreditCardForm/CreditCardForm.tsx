@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 
 import CreditCard from '../CreditCard/CreditCard';
 import CustomInputForm from '../CustomInputForm/CustomInputForm';
@@ -19,7 +19,7 @@ const CreditCardForm: React.FC<ICreditCardFormProps> = ({formData, setFormData})
 		return str.replace(/\d{4}(?=.)/g, '$& ');
 	};
 	
-	const handleChange = (name: string, value: string): void => {
+	const handleChange = useCallback((name: string, value: string): void => {
 		setFormData((prevData: IOrder) => ({
 			...prevData,
 			creditCard: {
@@ -27,7 +27,7 @@ const CreditCardForm: React.FC<ICreditCardFormProps> = ({formData, setFormData})
 				[name]: value,
 			},
 		}));
-	};
+	}, [setFormData]);
 	
 	return (
 		<div className={styles.creditCardForm}>

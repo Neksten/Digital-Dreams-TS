@@ -13,15 +13,16 @@ interface ISidebarFinalProps {
 	onSendForm?: (e: React.FormEvent<HTMLSpanElement>) => void;
 }
 
-const SidebarFinal: React.FC<ISidebarFinalProps> = ({
-	                                                    redirect,
-	                                                    textBtn,
-	                                                    length,
-	                                                    totalSale,
-	                                                    totalPrice,
-	                                                    send,
-	                                                    onSendForm,
-                                                    }) => {
+const SidebarFinal: React.FC<ISidebarFinalProps> = (
+	{
+		redirect,
+		textBtn,
+		length,
+		totalSale,
+		totalPrice,
+		send,
+		onSendForm,
+	}) => {
 	
 	return (
 		<div className={styles.heroSidebar}>

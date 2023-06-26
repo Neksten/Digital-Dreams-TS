@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 
 import classNames from 'classnames/bind';
 
@@ -32,11 +32,12 @@ const CartProduct: React.FC<ICartProductProps> = ({product, quantity}) => {
 		handleFavoriteClick,
 	} = useProductActions(product);
 	
-	const handleDecrementClick = () => {
+	const handleDecrementClick = useCallback(() => {
 		if (quantity !== 1) {
 			handleCountDecrementClick();
 		}
-	};
+	}, [handleCountDecrementClick, quantity]);
+	
 	return (
 		<div className={styles.cartProduct}>
 			<Link to={`/card/${product.id}`}>

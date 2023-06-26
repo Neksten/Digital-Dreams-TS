@@ -30,13 +30,13 @@ const FormReviewTextarea: React.FC<IFormReviewTextareaProps> = ({htmlFor, name, 
 		setValue(e.target.value);
 	};
 	
-	function textareaClick() {
+	const textareaClick = () => {
 		if (textareaRef.current) {
 			textareaRef.current.style.border = '1px solid #c20000';
 		}
-	}
+	};
 	
-	function onBlurTextarea(): void {
+	const onBlurTextarea = (): void => {
 		const errorMessages: {[key: string]: string} = {
 			comment: 'Поле должно содержать не менее 3 символов',
 		};
@@ -53,7 +53,7 @@ const FormReviewTextarea: React.FC<IFormReviewTextareaProps> = ({htmlFor, name, 
 				resetTextareaStyles();
 				break;
 		}
-	}
+	};
 	
 	const errorStatus = (text: string): void => {
 		setTextError(text);

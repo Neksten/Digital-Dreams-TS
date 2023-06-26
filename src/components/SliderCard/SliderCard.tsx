@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 
 import {ArrowPrev} from '../../assets/ArrowPrev';
 import {ArrowNext} from '../../assets/ArrowNext';
@@ -28,11 +28,11 @@ const SliderCard: React.FC<{ images: string[] }> = ({images}) => {
 		}
 	};
 	// клик по слайду
-	const handleClickArrowSlide = (id: number) => {
+	const handleClickArrowSlide = useCallback((id: number) => {
 		if (id !== activeSlide) {
 			setActiveSlide(id);
 		}
-	};
+	}, [setActiveSlide, activeSlide]);
 	
 	return (
 		<div className={styles.cardSlider}>

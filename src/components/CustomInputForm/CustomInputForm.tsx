@@ -71,7 +71,7 @@ const CustomInputForm: React.FC<ICustomInputFormProps> = ({
 		handleClick && handleClick();
 	};
 	
-	function onBlurCustomInput(): void {
+	const onBlurCustomInput = (): void => {
 		const errorMessages: { [key: string]: string } = {
 			userPhone: 'Номер телефона должен состоять из 11 цифр.',
 			userEmail: 'Введите почту правильно',
@@ -117,7 +117,7 @@ const CustomInputForm: React.FC<ICustomInputFormProps> = ({
 				break;
 		}
 		handleBlur && handleBlur();
-	}
+	};
 	
 	
 	return (

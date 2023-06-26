@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 
 import {useDispatch} from 'react-redux';
 
@@ -24,7 +24,7 @@ const FilterList: React.FC<IFilterListProps> = ({filters}) => {
 	const filtersActive = useTypedSelector(state => state.product.filters);
 	
 	// Добавить фильтр в активный
-	function addOptionFilter(option: string, title: string) {
+	const addOptionFilter = useCallback((option: string, title: string) => {
 		switch (title) {
 			case 'цвет':
 				dispatch(addColorFilterReducerAction(option));
@@ -33,10 +33,10 @@ const FilterList: React.FC<IFilterListProps> = ({filters}) => {
 				dispatch(addBrandFilterReducerAction(option));
 		}
 		dispatch(filterProductsReducerAction());
-	}
+	}, []);
 	
 	// Убрать фильтр из активных
-	function removeOptionFilter(option: string, title: string) {
+	const removeOptionFilter = useCallback((option: string, title: string) => {
 		switch (title) {
 			case 'цвет':
 				dispatch(removeColorFilterReducerAction(option));
@@ -45,7 +45,7 @@ const FilterList: React.FC<IFilterListProps> = ({filters}) => {
 				dispatch(removeBrandFilterReducerAction(option));
 		}
 		dispatch(filterProductsReducerAction());
-	}
+	}, []);
 	
 	return (
 		<>

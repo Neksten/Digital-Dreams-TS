@@ -22,7 +22,7 @@ const FilterDropDownItem: React.FC<IFilterDropDownItemProps> = (
 	const [selected, setSelected] = useState<boolean>(false);
 	
 	// активный/неактивный
-	function handleOptionClick() {
+	const handleOptionClick = () => {
 		setSelected(!selected);
 		
 		if (selected) {
@@ -31,7 +31,7 @@ const FilterDropDownItem: React.FC<IFilterDropDownItemProps> = (
 		} else {
 			addOptionFilter(option.toLowerCase(), title.toLowerCase());
 		}
-	}
+	};
 	
 	useEffect(() => {
 		if (selectedOptions.brand.includes(option.toLowerCase())

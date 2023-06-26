@@ -23,15 +23,15 @@ const DropDown: React.FC<DropDownProps> = (props) => {
 	const options = props.list;
 	
 	// Открытие/закрытие dropdown
-	function toggleDropdown() {
+	const toggleDropdown = (): void => {
 		setIsOpen(!isOpen);
-	}
+	};
 	
 	// При клике на элемент dropdown
-	function handleOptionClick(option: string) {
+	const handleOptionClick = (option: string):void => {
 		props.setSelectionOption(option);
 		setIsOpen(false);
-	}
+	};
 	
 	return (
 		<div className={cx(`${styles.dropdown}`, {

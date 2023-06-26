@@ -40,7 +40,7 @@ const FormReview: React.FC<IFormReviewProps> = ({setOpenForm, idProduct}) => {
 		}));
 	}, []);
 	
-	const handleSubmit = useCallback((e: React.FormEvent): void => {
+	const handleSubmit = (e: React.FormEvent): void => {
 		e.preventDefault();
 		const newReview: IReview = {
 			id: Date.now(),
@@ -52,7 +52,7 @@ const FormReview: React.FC<IFormReviewProps> = ({setOpenForm, idProduct}) => {
 		
 		setFormReview(initialFormReviewData);
 		setOpenForm(false);
-	}, [formReview, addReview, idProduct, setOpenForm]);
+	};
 	
 	const isValidForm = comment.length >= 3 && userName.length >= 2;
 	

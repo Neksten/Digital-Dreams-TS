@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useMemo, useCallback} from 'react';
 
 import {ICartProduct} from '../types/cart';
 import {IProduct} from '../types/product';
@@ -6,7 +6,7 @@ import {IProduct} from '../types/product';
 import {useTypedSelector} from './useTypedSelector';
 import {useActions} from './useActions';
 
-function useProductActions(product: IProduct) {
+const useProductActions = (product: IProduct) => {
 	const {id} = product;
 	const [favorite, setFavorite] = useState<boolean>(false);
 	const {cart, favorites} = useTypedSelector(state => ({
@@ -15,7 +15,9 @@ function useProductActions(product: IProduct) {
 	}));
 	
 	// Получаем элемент из корзины если он есть
-	const productCart: ICartProduct | undefined = [...cart].find((i) => i.idProduct === product.id);
+	const productCart: ICartProduct | undefined = useMemo(
+		() => [...cart].find((i) => i.idProduct === product.id),
+		[cart, product.id]);
 	
 	const {
 		addCart,
@@ -26,26 +28,26 @@ function useProductActions(product: IProduct) {
 		removeFavorite,
 	} = useActions();
 	
-	function handleCountDecrementClick() {
+	const handleCountDecrementClick = useCallback(() => {
 		productCountDecrementClick(id);
-	}
+	}, [id, productCountDecrementClick]);
 	
-	function handleCountIncrementClick() {
+	const handleCountIncrementClick = useCallback(() => {
 		productCountIncrementClick(id);
-	}
+	}, [id, productCountIncrementClick]);
 	
-	function addCartProduct(product: IProduct) {
+	const addCartProduct = useCallback((product: IProduct) => {
 		addCart(product);
-	}
+	}, [addCart]);
 	
-	const removeCartProduct = () => {
+	const removeCartProduct = useCallback(() => {
 		removeCart(id);
-	};
+	}, [removeCart, id]);
 	
-	function handleFavoriteClick(product: IProduct) {
+	const handleFavoriteClick = useCallback((product: IProduct) => {
 		!favorite ? addFavorite(product) : removeFavorite(id);
 		setFavorite(!favorite);
-	}
+	}, [favorite, addFavorite, removeFavorite, id]);
 	
 	useEffect(() => {
 		setFavorite(favorites.some(i => i.idProduct === id));
@@ -67,6 +69,6 @@ function useProductActions(product: IProduct) {
 		handleFavoriteClick,
 		productCart,
 	};
-}
+};
 
 export default useProductActions;

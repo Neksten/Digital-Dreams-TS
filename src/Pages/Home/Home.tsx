@@ -29,9 +29,9 @@ const Home: React.FC = () => {
 	const [sortedSelectionOption, setSortedSelectionOption] = useState<string>('По названию');
 	
 	// клик по стрелке до hero
-	function handleClick(): void {
+	const handleClick = (): void => {
 		scrollToRef.current?.scrollIntoView({behavior: 'smooth'});
-	}
+	};
 	
 	// закрузка данных
 	useEffect(() => {

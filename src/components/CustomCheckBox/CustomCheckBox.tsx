@@ -10,9 +10,9 @@ const CustomCheckBox: React.FC<ICustomCheckBoxProps> = ({activeParent}) => {
 	const [selected, setSelected] = useState<boolean>(false);
 	
 	// При клике на элемент CustomCheckBox
-	function handleCheckBoxClick() {
+	const handleCheckBoxClick = ():void => {
 		setSelected(!selected);
-	}
+	};
 	
 	// если кликнули по родительскому элементу
 	useEffect(() => {

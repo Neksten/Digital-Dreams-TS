@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 
 import CustomInputForm from '../CustomInputForm/CustomInputForm';
 import {IOrder} from '../../types/order';
@@ -12,7 +12,7 @@ interface IUserProps {
 
 const UserForm: React.FC<IUserProps> = ({formData, setFormData}) => {
 	
-	const handleChange = (name: string, value: string): void => {
+	const handleChange = useCallback((name: string, value: string): void => {
 		setFormData((prevData: IOrder) => ({
 			...prevData,
 			user: {
@@ -20,7 +20,7 @@ const UserForm: React.FC<IUserProps> = ({formData, setFormData}) => {
 				[name]: value,
 			},
 		}));
-	};
+	}, [setFormData]);
 	
 	return (
 		<form action="" className={styles.userForm}>
